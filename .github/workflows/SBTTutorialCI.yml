@@ -1,0 +1,21 @@
+name: Scala CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    defaults:
+      run:
+        working-directory: ./SBTTutorial
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run tests
+        run: sbt coverage test
+      - name: Coverage Report
+        run: sbt coverageReport
